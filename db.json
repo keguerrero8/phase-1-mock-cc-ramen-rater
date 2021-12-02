@@ -39,6 +39,14 @@
       "image": "./assets/ramen/kojiro.jpg",
       "rating": 6,
       "comment": "Perfect for a cold night."
+    },
+    {
+      "name": "Shoyu Ramen",
+      "restaurant": "Pliss Go",
+      "image": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2013%2F12%2F06%2F200905-xl-shoyu-ramen.jpg&q=85",
+      "rating": "2",
+      "comment": "2e",
+      "id": 6
     }
   ]
 }
