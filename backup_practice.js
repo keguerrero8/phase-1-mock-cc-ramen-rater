@@ -1,12 +1,12 @@
 // write your code here
 //DELIVERABLE 1
 function getImagesAndPopulate(url) {
+
     return fetch(url)
     .then(response => response.json())
     .then(json => {
         //console.log(json)
         const div = document.querySelector("#ramen-menu")
-        div.innerHTML = ""
         json.forEach(el => {
             const img = document.createElement("img")
             img.src = el.image
@@ -31,6 +31,21 @@ function getImagesAndPopulate(url) {
 }
 getImagesAndPopulate("http://localhost:3000/ramens")
 
+// // //DELIVERABLE 2
+// function populateItem (object) {
+//     console.log(object)
+//     const detailImage = document.querySelector(".detail-image")
+//     const h2 = document.querySelector(".name")
+//     const h3 = document.querySelector(".restaurant")
+//     const rating = document.querySelector("#rating-display")
+//     const comment = document.querySelector("#comment-display")
+//     detailImage.src = object.image
+//     h2.textContent = object.name
+//     h3.textContent = object.restaurant
+//     rating.textContent = object.rating
+//     comment.textContent = object.comment
+// }
+
 
 //DELIVERABLE 3
 
@@ -39,33 +54,28 @@ function createNewRamen(){
     form.addEventListener("submit", event => {
         event.preventDefault()
         //console.log(event)
-        //const div = document.querySelector("#ramen-menu")
+        const div = document.querySelector("#ramen-menu")
         const inputName = document.querySelector("#new-name")
         const inputRestaurant = document.querySelector("#new-restaurant")
         const inputImage = document.querySelector("#new-image")
         const inputRating = document.querySelector("#new-rating")
         const inputComment = document.querySelector("#new-comment")
+        const img = document.createElement("img") //create new ramen image to append   
+        img.src = inputImage.value
+        div.append(img)
 
-        const newRamen = {
-            name:inputName.value,
-            restaurant: inputRestaurant.value,
-            image:inputImage.value,
-            rating: inputRating.value,
-            comment: inputComment.value
-        }
-
-        fetch("http://localhost:3000/ramens", {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json",
-                Accept : "application/json",
-            },
-            body: JSON.stringify(newRamen)
+        img.addEventListener("click", (event) => { 
+            const detailImage = document.querySelector(".detail-image")
+            const h2 = document.querySelector(".name")
+            const h3 = document.querySelector(".restaurant")
+            const rating = document.querySelector("#rating-display")
+            const comment = document.querySelector("#comment-display")
+            detailImage.src = inputImage.value
+            h2.textContent = inputName.value
+            h3.textContent = inputRestaurant.value
+            rating.textContent = inputRating.value
+            comment.textContent = inputComment.value
         })
-        .then(response => response.json())
-        .then(object => {})
-
-        getImagesAndPopulate(`http://localhost:3000/ramens`)
 
     })
 
@@ -75,7 +85,7 @@ createNewRamen()
 
 //Advanced deliverable 1
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("http://localhost:3000/ramens")
+    return fetch("http://localhost:3000/ramens")
     .then(response => response.json())
     .then(json => {
         //const div = document.querySelector("#ramen-menu")
@@ -98,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Advanced deliverable 2
 // function updateRatingComment () {
-//     //const div = document.querySelector("#ramen-menu")
 //     const updateForm = document.querySelector("#edit-ramen")
 //     updateForm.addEventListener("submit", event => {
 //         event.preventDefault()
